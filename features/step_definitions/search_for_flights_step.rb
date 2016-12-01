@@ -9,8 +9,6 @@ When(/^I search for a flight using the default$/) do
   on_page SouthwestHome do |page|
     @departure_date = page.departure_date
     @return_date = page.return_date
-    puts @departure_date
-    puts @return_date
     page.departure_location = 'CMH'
     page.arrival_location = 'MCO'
     page.search
