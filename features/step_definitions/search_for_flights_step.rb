@@ -2,6 +2,9 @@ require 'page-object'
 
 include PageObject::PageFactory
 
+COLUMBUS_AIRPORT_CODE = 'CMH'
+ORLANDO_AIRPORT_CODE = 'MCO'
+
 When(/^I search for a flight using the default$/) do
   visit_page SouthwestHome do
   end
@@ -9,8 +12,8 @@ When(/^I search for a flight using the default$/) do
   on_page SouthwestHome do |page|
     @departure_date = page.departure_date
     @return_date = page.return_date
-    page.departure_location = 'CMH'
-    page.arrival_location = 'MCO'
+    page.departure_location = COLUMBUS_AIRPORT_CODE
+    page.arrival_location = ORLANDO_AIRPORT_CODE
     page.search
   end
 end

@@ -5,15 +5,16 @@ class SouthwestHome
   include PageObject
   page_url 'www.southwest.com'
 
-  text_field(:departure_date_full, :class => 'js-depart-date-dup')
-  text_field(:departure_date, :id => 'air-date-departure')
-  text_field(:return_date, :id => 'air-date-return')
-  text_field(:departure_location, :id => 'air-city-departure')
-  text_field(:arrival_location, :id => 'air-city-arrival')
-  button(:search, :id => 'jb-booking-form-submit-button')
+  DEPARTURE_DATE_ID = 'air-date-departure'
+  RETURN_DATE_ID = 'air-date-return'
+  DEPARTURE_LOCATION_ID = 'air-city-departure'
+  ARRIVAL_LOCATION_ID = 'air-city-arrival'
+  SEARCH_ID = 'jb-booking-form-submit-button'
 
-  def testing_date
-    puts self.departure_date_full_element.attribute('value')
-  end
+  text_field(:departure_date, :id => DEPARTURE_DATE_ID)
+  text_field(:return_date, :id => RETURN_DATE_ID)
+  text_field(:departure_location, :id => DEPARTURE_LOCATION_ID)
+  text_field(:arrival_location, :id => DEPARTURE_LOCATION_ID)
+  button(:search, :id => SEARCH_ID)
 
 end

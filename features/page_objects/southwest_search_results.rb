@@ -4,15 +4,19 @@ require 'watir-webdriver'
 class SouthwestSearchResults
   include PageObject
 
-  attr_accessor = :full_date,'carouselfulldate'
+  FULL_YEAR_DATE_FORMATTER = '%Y/%m/%d'
+  MONTH_DAY_DATE_FORMATTER = '%m/%d'
 
-  DATE_FORMATTER = '%Y/%m/%d'
   FULL_DATE = 'carouselfulldate'
+  DEPARTURE_DATE_ID = 'carouselTodayDepart'
+  RETURN_DATE_ID = 'carouselTodayReturn'
+  NON_TODAY_SELECTABLE_CSS_CLASS = 'carouselEnabledSodaIneligible'
+  NONSELECTABLE_CSS_CLASS = 'carouselDisabled'
 
-  list_item(:departure_date, :id => 'carouselTodayDepart')
-  list_item(:return_date, :id => 'carouselTodayReturn')
-  list_items(:selectable_dates_not_today, :class => 'carouselEnabledSodaIneligible')
-  list_items(:unselectable_dates_full, :class => 'carouselDisabled')
+  list_item(:departure_date, :id => DEPARTURE_DATE_ID)
+  list_item(:return_date, :id => RETURN_DATE_ID)
+  list_items(:selectable_dates_not_today, :class => NON_TODAY_SELECTABLE_CSS_CLASS)
+  list_items(:unselectable_dates_full, :class => NONSELECTABLE_CSS_CLASS)
 
   def highlighted_departure_date
     date_string_to_day_and_month_string(self.departure_date_element.attribute(FULL_DATE))
@@ -23,11 +27,11 @@ class SouthwestSearchResults
   end
 
   def string_to_date(date_string)
-    Date.strptime(date_string, DATE_FORMATTER)
+    Date.strptime(date_string, FULL_YEAR_DATE_FORMATTER)
   end
 
   def date_string_to_day_and_month_string(full_date_string)
-    string_to_date(full_date_string).strftime('%m/%d')
+    string_to_date(full_date_string).strftime(MONTH_DAY_DATE_FORMATTER)
   end
 
   def selectable_dates
@@ -36,7 +40,7 @@ class SouthwestSearchResults
       selectable_dates_all << string_to_date(date.attribute(FULL_DATE))
     end
     selectable_dates_all << string_to_date(self.departure_date_element.attribute(FULL_DATE))
-    selectable_dates_all << string_to_date(self.departure_date_element.attribute(FULL_DATE))
+    selectable_dates_all << string_to_date(self.return_date_element.attribute(FULL_DATE))
     selectable_dates_all
   end
 
