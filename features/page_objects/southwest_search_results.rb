@@ -19,18 +19,18 @@ class SouthwestSearchResults
   list_items(:unselectable_dates_full, :class => NONSELECTABLE_CSS_CLASS)
 
   def highlighted_departure_date
-    date_string_to_day_and_month_string(self.departure_date_element.attribute(FULL_DATE))
+    date_to_day_and_month(self.departure_date_element.attribute(FULL_DATE))
   end
 
   def highlighted_return_date
-    date_string_to_day_and_month_string(self.return_date_element.attribute(FULL_DATE))
+    date_to_day_and_month(self.return_date_element.attribute(FULL_DATE))
   end
 
   def string_to_date(date_string)
     Date.strptime(date_string, FULL_YEAR_DATE_FORMATTER)
   end
 
-  def date_string_to_day_and_month_string(full_date_string)
+  def date_to_day_and_month(full_date_string)
     string_to_date(full_date_string).strftime(MONTH_DAY_DATE_FORMATTER)
   end
 

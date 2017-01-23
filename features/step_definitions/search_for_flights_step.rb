@@ -14,6 +14,7 @@ When(/^I search for a flight using the default$/) do
     @return_date = page.return_date
     page.departure_location = COLUMBUS_AIRPORT_CODE
     page.arrival_location = ORLANDO_AIRPORT_CODE
+    sleep 2
     page.search
   end
 end
@@ -28,8 +29,6 @@ Then(/^the dates I searched for are highlighted in the search results$/) do
 end
 
 And(/^I can't choose a departure date from the past$/) do
-  #Verify that all dates in the past are not able to be chosen
-  #Verify all present/future dates are able to be chosen
   on_page SouthwestSearchResults do |page|
     selectable_dates = page.selectable_dates
     unselectable_dates = page.unselectable_dates

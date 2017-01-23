@@ -14,7 +14,7 @@ class SouthwestHome
   text_field(:departure_date, :id => DEPARTURE_DATE_ID)
   text_field(:return_date, :id => RETURN_DATE_ID)
   text_field(:departure_location, :id => DEPARTURE_LOCATION_ID)
-  text_field(:arrival_location, :id => DEPARTURE_LOCATION_ID)
+  text_field(:arrival_location, :id => ARRIVAL_LOCATION_ID)
   button(:search, :id => SEARCH_ID)
 
 end
